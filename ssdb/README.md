@@ -96,3 +96,49 @@ info
 
 dbsize
 ```
+
+### Deploy with mesos && marathon
+
+```json
+{
+   "id": "/ssdb-dev",
+   "apps": [
+     {
+       "id": "node1",
+       "cpus": 16,
+       "mem": 50000.0,
+       "ports": [8888],
+       "requirePorts": true,
+       "labels": {
+         "traefik.portIndex": "0",
+         "traefik.frontend.passHostHeader": "true",
+         "appname": "ssdb-dev"
+       },
+       "instances": 1,
+       "container": {
+         "type": "DOCKER",
+         "volumes": [
+           {
+             "containerPath": "/var/log",
+             "hostPath": "/var/log",
+             "mode": "RW"
+           }
+         ],
+         "docker": {
+           "image": "dmitryb/ssdb:0.0.1",
+           "network": "HOST",
+           "forcePullImage": true,
+           "parameters": [
+             { "key": "env", "value": "FORCE_UPDATE=0" }
+           ]
+         }
+       }
+     }
+   ]
+ }
+```
+
+upload to marathon
+```
+curl -include -XPUT "$MARATHON_MASTER/v2/groups?force=true" -d @<path_to_config.json>
+```
