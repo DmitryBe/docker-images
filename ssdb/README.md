@@ -31,3 +31,44 @@ docker run --rm -v /path/to/ssdb.conf:/usr/local/ssdb/ssdb.conf -p 8888:8888 --n
 ```
 docker exec -it ssdb /usr/local/ssdb/ssdb-cli
 ```
+
+### Java client
+
+Using non-official client [SSDB4J](https://github.com/nutzam/ssdb4j)
+
+```java
+import org.nutz.ssdb4j.SSDBs
+import org.nutz.ssdb4j.spi.Cmd
+import org.nutz.ssdb4j.spi.Response
+import org.nutz.ssdb4j.spi.SSDB
+
+val ssdb = SSDBs.pool("127.0.0.1", 8888, 2000, null)
+
+val r = ssdb.set("test", 123)
+r.ok()
+
+val r = ssdb.get("test")
+r.ok()
+r.check().asString
+
+val r2 = ssdb.multi_get("test", "test2")
+r2.check().mapString()
+```
+
+### Python client
+
+SSDB simple client [SSDB](https://github.com/ideawu/ssdb/blob/master/api/python/SSDB.py)
+
+```python
+import os, sys
+from sys import stdin, stdout
+from SSDB import SSDB
+
+ssdb = SSDB('127.0.0.1', 8888)
+
+ssdb.request('set', ['test', '123'])
+
+ssdb.request('get', ['test'])
+
+ssdb.request('del', ['test'])
+```
