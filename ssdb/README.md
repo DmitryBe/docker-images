@@ -72,3 +72,21 @@ ssdb.request('get', ['test'])
 
 ssdb.request('del', ['test'])
 ```
+
+### CLI 
+
+Command Line examples [CLI](http://ssdb.io/docs/ssdb-cli.html)
+
+```sh
+/usr/local/ssdb/ssdb-cli -h 127.0.0.1 -p 8888
+
+set k 1
+
+ket k
+
+del k
+
+info
+
+dbsize
+```
