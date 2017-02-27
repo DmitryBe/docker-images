@@ -6,6 +6,12 @@
 
 Custom configuration parameters: `work_dir`, `pidfile` and `logger:level`.
 
+### Pull
+
+```
+docker pull dmitryb/ssdb
+```
+
 ## Usage
 
 ```
