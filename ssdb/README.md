@@ -15,13 +15,13 @@ docker pull dmitryb/ssdb
 ## Usage
 
 ```
-docker run --rm -p 8888:8888 --name ssdb felixsanz/ssdb
+docker run --rm -p 8888:8888 --name ssdb dmitryb/ssdb
 ```
 
 This container saves the database files inside `/data`, so if you want to host this files inside your hosts filesystem (good for persistence/backups), start the container with the following command instead:
 
 ```
-docker run --rm -v ssdb:/data -p 8888:8888 --name ssdb felixsanz/ssdb
+docker run --rm -v ssdb:/data -p 8888:8888 --name ssdb dmitryb/ssdb
 ```
 
 **Note:** Docker volume `ssdb` must be [created previously](https://docs.docker.com/engine/reference/commandline/volume_create/).
@@ -29,7 +29,7 @@ docker run --rm -v ssdb:/data -p 8888:8888 --name ssdb felixsanz/ssdb
 ### Custom configuration
 
 ```
-docker run --rm -v /path/to/ssdb.conf:/usr/local/ssdb/ssdb.conf -p 8888:8888 --name ssdb felixsanz/ssdb
+docker run --rm -v /path/to/ssdb.conf:/usr/local/ssdb/ssdb.conf -p 8888:8888 --name ssdb dmitryb/ssdb
 ```
 
 ### Running `ssdb-cli`
