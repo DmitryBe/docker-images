@@ -82,7 +82,7 @@ Command Line examples [CLI](http://ssdb.io/docs/ssdb-cli.html)
 
 set k 1
 
-ket k
+get k
 
 del k
 
