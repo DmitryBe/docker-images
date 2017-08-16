@@ -1,5 +1,5 @@
 REPO=dmitryb/ssdb
-TAG=0.0.1
+TAG=latest
 
 docker-build:
 	docker build -t $(REPO):$(TAG) .
