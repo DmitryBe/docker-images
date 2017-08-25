@@ -4,7 +4,7 @@ render_template() {
   eval "echo \"$(cat $1)\""
 }
 
-echo 'app dir: ' $APP_DIR
+echo 'app dir: ' $SSDB_DIR
 
 # if PORT0 -> SSDB_PORT
 if [[ -z ${PORT0} ]]; 
@@ -18,6 +18,6 @@ if [[ -z ${PORT0} ]];
 fi
 
 # render config (replace env var)
-render_template ${APP_DIR}/config/ssdb.conf.template  > ${APP_DIR}/config/ssdb.conf
+render_template ${SSDB_DIR}/config/ssdb.conf.template  > ${SSDB_DIR}/config/ssdb.conf
 
-${APP_DIR}/ssdb-server ${APP_DIR}/config/ssdb.conf
+${SSDB_DIR}/ssdb-server ${SSDB_DIR}/config/ssdb.conf

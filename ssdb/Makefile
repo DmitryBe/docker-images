@@ -1,4 +1,5 @@
-REPO=dmitryb/ssdb
+#REPO=dmitryb/ssdb
+REPO=ssdb
 TAG=latest
 
 docker-build:
@@ -6,4 +7,5 @@ docker-build:
 
 docker-push:
 	docker push $(REPO):$(TAG)
+
 
