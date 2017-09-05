@@ -1,4 +1,4 @@
-REPO=localhost:5000/ssdb
+REPO=localhost:5000/flink
 TAG=latest
 
 docker-build:

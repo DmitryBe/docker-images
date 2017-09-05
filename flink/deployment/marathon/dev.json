@@ -1,0 +1,49 @@
+{
+  "id": "/flink/cluster-01",
+  "cmd": "/opt/flink/bin/mesos-appmaster.sh -Dmesos.resourcemanager.tasks.container.type=docker -Dmesos.resourcemanager.tasks.container.image.name=$FLINK_DOCKER_IMAGE -Dmesos.resourcemanager.tasks.mem=$MESOS_RESOURCE_MANAGER_TASKS_MEM -Dmesos.resourcemanager.tasks.cpus=$MESOS_RESOURCE_MANAGER_TASKS_CPUS -Dmesos.resourcemanager.framework.name=$MESOS_FRAMEWORK_NAME -Dmesos.resourcemanager.artifactserver.ssl.enabled=true -Dmesos.resourcemanager.tasks.bootstrap-cmd=FLINK_HOME=/opt/flink -Dmesos.master=$MESOS_MASTER_URL -Dmesos.constraints.hard.hostattribute=$MESOS_CONSTRAINS -Dmesos.initial-tasks=$MESOS_INITIAL_TASKS -Dmesos.maximum-failed-tasks=-1 -Djobmanager.rpc.address=$HOST -Djobmanager.rpc.port=6123 -Djobmanager.web.address=$HOST -Djobmanager.web.port=$PORT0 -Djobmanager.heap.mb=$JOBMANAGER_HEAP_MB -Dtaskmanager.heap.mb=$TASKMANAGER_HEAP_MB -Dtaskmanager.numberOfTaskSlots=$TASKMANAGER_NUMBEROFTASKSLOTS -Dparallelism.default=$PARALLELIZM_DEFAULT",
+  "cpus": 1,
+  "mem": 8000,
+  "ports": [0],
+  "requirePorts": false,
+  "disk": 0,
+  "instances": 1,
+  "constraints": [
+    [
+      "layer",
+      "LIKE",
+      "minerva"
+    ]
+  ],
+  "labels": {
+    "traefik.frontend.passHostHeader": "true",
+    "traefik.portIndex": "0",
+    "appname": "flink-cluster-01"
+  },
+  "container": {
+    "type": "DOCKER",
+    "volumes": [],
+    "docker": {
+      "image": "localhost:5000/flink",
+      "network": "HOST",
+      "portMappings": [],
+      "privileged": false,
+      "parameters": [],
+      "forcePullImage": true
+    }
+  },
+  "env": {
+    "FORCE_UPDATE": "0",
+    "FLINK_HOME": "/opt/flink",
+    "FLINK_DOCKER_IMAGE": "localhost:5000/flink",
+    "MESOS_FRAMEWORK_NAME": "flink-01",
+    "MESOS_MASTER_URL": "zk://10.59.53.150:2181,10.59.55.24:2181,10.59.54.99:2181/mesos-20170609",
+    "MESOS_CONSTRAINS": "layer:minerva",
+    "MESOS_INITIAL_TASKS": "10",
+    "MESOS_RESOURCE_MANAGER_TASKS_CPUS": "1",
+    "MESOS_RESOURCE_MANAGER_TASKS_MEM": "8000",
+    "TASKMANAGER_NUMBEROFTASKSLOTS": "2",
+    "PARALLELIZM_DEFAULT": "10",
+    "JOBMANAGER_HEAP_MB": "4048",
+    "TASKMANAGER_HEAP_MB": "4048"
+  }
+}
