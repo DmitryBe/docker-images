@@ -1,6 +1,6 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
-RUN pip install slack-cli
+RUN pip install slackclient
 
 ADD ./send-message.sh /
-
+ADD ./main.py /

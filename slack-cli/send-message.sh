@@ -1,2 +1,2 @@
 
-slack-cli --token=$SLACK_CLI_TOKEN "$@"
+python main.py --token $SLACK_CLI_TOKEN $@
